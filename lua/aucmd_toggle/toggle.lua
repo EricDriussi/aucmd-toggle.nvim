@@ -35,4 +35,4 @@ local function toggle(selection, aucmds)
   end
 end
 
-return { toggle = toggle() }
+return { toggle = toggle }
