@@ -1,6 +1,7 @@
--- assumes the aucmds already exist
+-- TODO.assumes the aucmds already exist
 
 local aucmds_by_selection = {}
+local M = {}
 
 local function turn_off(selection, aucmds_to_toggle)
   for _, cmd in pairs(aucmds_to_toggle) do
@@ -22,7 +23,7 @@ local function turn_on_by(selection)
   aucmds_by_selection[selection] = {}
 end
 
-local function toggle(selection, aucmds)
+function M.toggle(selection, aucmds)
   if aucmds_by_selection[selection] == nil then
     aucmds_by_selection[selection] = {}
   end
@@ -35,4 +36,4 @@ local function toggle(selection, aucmds)
   end
 end
 
-return { toggle = toggle }
+return M
