@@ -1,6 +1,7 @@
 .DEFAULT_GOAL := help
 
-ALL_TESTS = nvim --headless -c "PlenaryBustedDirectory tests/ {minimal_init='tests/test_config_init.vim'; timeout=500}"
+# TODO.extract vars
+ALL_TESTS = nvim --headless --noplugin -u tests/test_config_init.lua -c "PlenaryBustedDirectory tests/ {minimal_init='tests/test_config_init.lua'; timeout=500}"
 
 .PHONY: help
 help: ## This help menu
