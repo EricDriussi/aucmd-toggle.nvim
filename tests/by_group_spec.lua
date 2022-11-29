@@ -2,7 +2,7 @@ local function log_table(tabl)
   print(vim.inspect(tabl))
 end
 
-local t = require("aucmd_toggle.toggle")
+local plugin = require("aucmd_toggle")
 
 describe("toggle should", function()
 
@@ -21,7 +21,7 @@ describe("toggle should", function()
     })
 
     local aucmds_by_group = vim.api.nvim_get_autocmds({ group = augroup })
-    t.toggle(augroup, aucmds_by_group)
+    plugin.toggle(augroup, aucmds_by_group)
 
     local aucmds_by_group_after_toggle = vim.api.nvim_get_autocmds({ group = augroup })
     log_table(aucmds_by_group_after_toggle)
