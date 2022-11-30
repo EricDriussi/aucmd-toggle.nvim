@@ -8,7 +8,11 @@ local config = {
 
 -- user config
 M.setup = function(args)
-  config = vim.tbl_deep_extend("force", config, args or {})
+  if (type(args) ~= "table") then
+    error("Setup func only accepts table as arg")
+  else
+    config = vim.tbl_deep_extend("force", config, args or {})
+  end
 end
 
 -- entry point for module/s

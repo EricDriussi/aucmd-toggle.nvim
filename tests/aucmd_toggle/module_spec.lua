@@ -1,7 +1,7 @@
-local p = require("aucmd_toggle")
+local p = require("aucmd_toggle.module")
 local h = require("tests.helper")
 
-describe("toggle should", function()
+describe("module should", function()
 
   before_each(function()
     h.clear_store()
@@ -19,7 +19,7 @@ describe("toggle should", function()
     p.toggle(augroup, aucmds_before)
 
     local aucmds_after = h.aucmds.get.by_group(augroup)
-    assert.equals(#aucmds_after, 0)
+    assert.equals(0, #aucmds_after)
   end)
 
   it("turn a group off and on", function()
@@ -33,6 +33,6 @@ describe("toggle should", function()
     p.toggle(augroup, aucmds_between)
 
     local aucmds_after = h.aucmds.get.by_group(augroup)
-    assert.are.equals(#aucmds_after, #aucmds_before)
+    assert.are.equals(#aucmds_before, #aucmds_after)
   end)
 end)
