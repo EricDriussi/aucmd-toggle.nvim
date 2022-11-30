@@ -1,18 +1,18 @@
 -- TODO.assumes the aucmds already exist
 
-local aucmds_by_selection = {}
 local M = {}
+M.aucmds_by_selection = {}
 
 local function turn_off(selection, aucmds_to_toggle)
   for _, cmd in pairs(aucmds_to_toggle) do
-    table.insert(aucmds_by_selection[selection], cmd)
+    table.insert(M.aucmds_by_selection[selection], cmd)
     vim.api.nvim_del_autocmd(cmd.id)
     print(cmd.desc .. " turned OFF")
   end
 end
 
 local function turn_on_by(selection)
-  for _, cmd in pairs(aucmds_by_selection[selection]) do
+  for _, cmd in pairs(M.aucmds_by_selection[selection]) do
     vim.api.nvim_create_autocmd(cmd.event, {
       desc = cmd.desc,
       group = cmd.group_name,
@@ -20,12 +20,12 @@ local function turn_on_by(selection)
     })
     print(cmd.desc .. " turned ON")
   end
-  aucmds_by_selection[selection] = {}
+  M.aucmds_by_selection[selection] = {}
 end
 
 function M.toggle(selection, aucmds)
-  if aucmds_by_selection[selection] == nil then
-    aucmds_by_selection[selection] = {}
+  if M.aucmds_by_selection[selection] == nil then
+    M.aucmds_by_selection[selection] = {}
   end
 
   local cmds_are_set = next(aucmds) ~= nil

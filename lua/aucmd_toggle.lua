@@ -1,14 +1,14 @@
 local module = require("aucmd_toggle.module")
 
 local M = {}
-M.config = {
+local config = {
   -- default config
   opt = "Hello!",
 }
 
 -- user config
 M.setup = function(args)
-  M.config = vim.tbl_deep_extend("force", M.config, args or {})
+  config = vim.tbl_deep_extend("force", config, args or {})
 end
 
 -- entry point for module/s

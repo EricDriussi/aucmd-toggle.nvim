@@ -1,30 +1,38 @@
-local function log_table(tabl)
-  print(vim.inspect(tabl))
-end
-
-local plugin = require("aucmd_toggle")
+local p = require("aucmd_toggle")
+local h = require("tests.helper")
 
 describe("toggle should", function()
 
-  local new_au_cmd = vim.api.nvim_create_autocmd
-  local new_au_grp = vim.api.nvim_create_augroup
+  before_each(function()
+    h.clear_store()
+  end)
 
-  it("turn off", function()
+  after_each(function()
+    h.clear_store()
+  end)
+
+  it("turn a group off", function()
     local augroup = "a_real_augroup"
-    new_au_cmd(
-      "BufWritePre", {
-      desc = "A Real Aucmd",
-      group = new_au_grp(augroup, {}),
-      callback = function()
-        print("do stuff")
-      end
-    })
+    h.aucmds.make.with_group(augroup)
 
-    local aucmds_by_group = vim.api.nvim_get_autocmds({ group = augroup })
-    plugin.toggle(augroup, aucmds_by_group)
+    local aucmds_before = h.aucmds.get.by_group(augroup)
+    p.toggle(augroup, aucmds_before)
 
-    local aucmds_by_group_after_toggle = vim.api.nvim_get_autocmds({ group = augroup })
-    log_table(aucmds_by_group_after_toggle)
-    assert.equals(#aucmds_by_group_after_toggle, 0)
+    local aucmds_after = h.aucmds.get.by_group(augroup)
+    assert.equals(#aucmds_after, 0)
+  end)
+
+  it("turn a group off and on", function()
+    local augroup = "a_real_augroup"
+    h.aucmds.make.with_group(augroup)
+
+    local aucmds_before = h.aucmds.get.by_group(augroup)
+    p.toggle(augroup, aucmds_before)
+
+    local aucmds_between = h.aucmds.get.by_group(augroup)
+    p.toggle(augroup, aucmds_between)
+
+    local aucmds_after = h.aucmds.get.by_group(augroup)
+    assert.are.equals(#aucmds_after, #aucmds_before)
   end)
 end)
