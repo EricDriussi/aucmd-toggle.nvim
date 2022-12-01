@@ -16,7 +16,7 @@ local function turn_on_by(selection)
     vim.api.nvim_create_autocmd(cmd.event, {
       desc = cmd.desc,
       group = cmd.group_name,
-      callback = cmd.callback
+      callback = cmd.callback,
     })
     print(cmd.desc .. " turned ON")
   end

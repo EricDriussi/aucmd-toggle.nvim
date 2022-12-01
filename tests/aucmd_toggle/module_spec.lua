@@ -2,7 +2,6 @@ local p = require("aucmd_toggle.module")
 local h = require("tests.helper")
 
 describe("module should", function()
-
   before_each(function()
     h.clear_store()
   end)

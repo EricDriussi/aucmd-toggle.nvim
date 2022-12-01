@@ -16,7 +16,7 @@ M.aucmds = {
 
     by_event = function(event)
       return vim.api.nvim_get_autocmds({ event = event })
-    end
+    end,
   },
 
   make = {
@@ -26,7 +26,7 @@ M.aucmds = {
         group = vim.api.nvim_create_augroup(augroup, {}),
         callback = function()
           print("do stuff")
-        end
+        end,
       })
     end,
 
@@ -36,10 +36,10 @@ M.aucmds = {
         group = vim.api.nvim_create_augroup("a_real_group", {}),
         callback = function()
           print("do stuff")
-        end
+        end,
       })
-    end
-  }
+    end,
+  },
 }
 
 return M
