@@ -36,10 +36,9 @@ describe("module should", function()
     it("by group", function()
       local augroup = "a_real_augroup"
       h.aucmds.make.with_group(augroup)
-
       local aucmds_before = h.aucmds.get.by_group(augroup)
-      p.toggle_by_augroup(augroup)
 
+      p.toggle_by_augroup(augroup)
       p.toggle_by_augroup(augroup)
 
       local aucmds_after = h.aucmds.get.by_group(augroup)
@@ -49,10 +48,9 @@ describe("module should", function()
     it("by event", function()
       local event = "BufWritePost"
       h.aucmds.make.with_event(event)
-
       local aucmds_before = h.aucmds.get.by_event(event)
-      p.toggle_by_event(event)
 
+      p.toggle_by_event(event)
       p.toggle_by_event(event)
 
       local aucmds_after = h.aucmds.get.by_event(event)
