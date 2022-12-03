@@ -22,7 +22,7 @@ M.aucmds = {
   make = {
     with_group = function(augroup)
       vim.api.nvim_create_autocmd("BufWritePre", {
-        desc = "A Real Aucmd",
+        desc = "A real aucmd by group",
         group = vim.api.nvim_create_augroup(augroup, {}),
         callback = function()
           print("do stuff")
@@ -32,7 +32,7 @@ M.aucmds = {
 
     with_event = function(event)
       vim.api.nvim_create_autocmd(event, {
-        desc = "A Real Aucmd",
+        desc = "A real aucmd by event",
         group = vim.api.nvim_create_augroup("a_real_group", {}),
         callback = function()
           print("do stuff")

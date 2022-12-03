@@ -1,12 +1,8 @@
 local module = require("aucmd_toggle.module")
 
 local M = {}
-local config = {
-  -- default config
-  opt = "Hello!",
-}
+local config = {}
 
--- user config
 M.setup = function(args)
   if type(args) ~= "table" then
     error("Setup func only accepts table as arg")
@@ -15,9 +11,12 @@ M.setup = function(args)
   end
 end
 
--- entry point for module/s
-M.toggle = function(augroup, aucmds_by_group)
-  module.toggle(augroup, aucmds_by_group)
+M.by_group = function(name)
+  module.toggle_by_augroup(name)
+end
+
+M.by_event = function(event)
+  module.toggle_by_event(event)
 end
 
 return M

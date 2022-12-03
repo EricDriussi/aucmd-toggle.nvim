@@ -1,5 +1,3 @@
--- TODO.assumes the aucmds already exist
-
 local M = {}
 M.aucmds_by_selection = {}
 
@@ -23,16 +21,31 @@ local function turn_on_by(selection)
   M.aucmds_by_selection[selection] = {}
 end
 
-function M.toggle(selection, aucmds)
-  if M.aucmds_by_selection[selection] == nil then
-    M.aucmds_by_selection[selection] = {}
+function M.toggle_by_augroup(group_name)
+  if M.aucmds_by_selection[group_name] == nil then
+    M.aucmds_by_selection[group_name] = {}
   end
 
+  local aucmds = vim.api.nvim_get_autocmds({ group = group_name })
   local cmds_are_set = next(aucmds) ~= nil
   if cmds_are_set then
-    turn_off(selection, aucmds)
+    turn_off(group_name, aucmds)
   else
-    turn_on_by(selection)
+    turn_on_by(group_name)
+  end
+end
+
+function M.toggle_by_event(event_name)
+  if M.aucmds_by_selection[event_name] == nil then
+    M.aucmds_by_selection[event_name] = {}
+  end
+
+  local aucmds = vim.api.nvim_get_autocmds({ event = event_name })
+  local cmds_are_set = next(aucmds) ~= nil
+  if cmds_are_set then
+    turn_off(event_name, aucmds)
+  else
+    turn_on_by(event_name)
   end
 end
 
