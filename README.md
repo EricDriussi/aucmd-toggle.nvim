@@ -1,16 +1,10 @@
 # aucmd-toggle
 
-Super basic toggle for you predefined autocommands.
-
-## Install
-
-Vim-plug: `Plug 'EricDriussi/aucmd-toggle.nvim'`
-
-Packer: `use { 'EricDriussi/aucmd-toggle.nvim' }`
+Super basic toggle for your predefined autocommands.
 
 ## Usage
 
-Say you want to toggle on/off one or more autocommands (**given that they are already defined**).
+Say you want to toggle on/off one or more autocommands.
 
 ### By event
 
